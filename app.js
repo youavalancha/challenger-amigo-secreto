@@ -9,7 +9,13 @@ function agregarAmigo(){
         alert('Debe ingresar un nombre');
         return;
 
+    }else{
+        if(!validarLetras(nombreAmigo)){
+            alert('debe ingresar solo letras no numeros');
+            return;
+        }
     }
+    nombreAmigo = cambiaAMayusculas(nombreAmigo);
     amigo.push(nombreAmigo);
     inputAmigo.value = "";
     inputAmigo.focus();
@@ -31,6 +37,8 @@ function mostrarAmigo(){
 
 }
 
+
+
 function sortearAmigo(){
     if(amigo.length === 0){
         alert("ningun amigo para sortear");
@@ -44,4 +52,14 @@ function sortearAmigo(){
     limpiarLista.innerHTML = "";
 
 
+}
+function validarLetras(texto) {
+    const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ]+$/;
+    return regex.test(texto);
+}
+
+function cambiaAMayusculas(str){
+    
+    if(str.length === 0) return str;
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
